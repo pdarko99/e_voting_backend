@@ -13,17 +13,17 @@
   
 ### Features
 
-  - Login Page
+  - Login endpoint
     Where the leader of the organization can login to create a cluster
    
-  - Registration Page
+  - Registration endpoint
     The leader of the organization has to be registered to be able to login
    
-  - Organization Registration Page
+  - Organization Registration endpoint
     Where the leader can register it's organization
     
   - Leader's Dashboard
-    Where the leader can see his registered organization and initalize them by filling in the candidates details, registered voters and much more
+    Where the leader can see his registered organization and initalize them by filling in the candidates details, registered voters and much more to their endpoints
     
     
 ### How to Install dependencies
