@@ -13,7 +13,7 @@ export class CreateOrganization{
     constructor(){this.createOrg = this.createOrg.bind(this), this.setEmailLogic = this.setEmailLogic.bind(this), this.getOneOrg = this.getOneOrg.bind(this)}
 
     async createOrg(req: express.Request, res: express.Response, next: express.NextFunction){
-        const url = process.env.PORT! || 'http://localhost:3000'
+        const url = 'https://shrouded-reef-90177.herokuapp.com'
         let data = {...req.body}
         data.id = req.query.id
         data.pic = `${url}/${req.file?.path}`

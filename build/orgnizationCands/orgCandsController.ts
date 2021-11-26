@@ -5,7 +5,7 @@ export class OrgDetails {
     constructor(){}
 
     async createCandidate(req: express.Request, res: express.Response, next: express.NextFunction){
-        const url = process.env.PORT! || 'http://localhost:3000'
+        const url = 'https://shrouded-reef-90177.herokuapp.com'
 
         // req.body.id = req.query.id
         if(req.file){
