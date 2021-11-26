@@ -4,11 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
-var pino_1 = __importDefault(require("pino"));
 var baseError_1 = require("./error/baseError");
 var server_1 = require("./server");
 var url = process.env.URL;
-var logger = (0, pino_1.default)();
 var PORT = process.env.PORT || 3000;
 mongoose_1.default.connect(url).then(function (data) {
     console.log('we connected to database');
