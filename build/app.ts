@@ -9,7 +9,7 @@ const logger = pino()
 const PORT = process.env.PORT || 3000
 
     mongoose.connect(url).then((data) => {
-        logger.info({success: 'connected to database'})
+       console.log('we connected to database')
 
     })
 
@@ -28,7 +28,7 @@ process.on('uncaughtException', err =>{
     }
 })
 
-app.listen(PORT, () => logger.info({connected: 'we connected to server'}))
+app.listen(PORT, () => console.log('we connected'))
 
 
 

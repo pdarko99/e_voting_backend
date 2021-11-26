@@ -11,7 +11,7 @@ var url = process.env.URL;
 var logger = (0, pino_1.default)();
 var PORT = process.env.PORT || 3000;
 mongoose_1.default.connect(url).then(function (data) {
-    logger.info({ success: 'connected to database' });
+    console.log('we connected to database');
 });
 server_1.app.use(baseError_1.logError);
 server_1.app.use(baseError_1.returnError);
@@ -24,5 +24,5 @@ process.on('uncaughtException', function (err) {
         process.exit(1);
     }
 });
-server_1.app.listen(PORT, function () { return logger.info({ connected: 'we connected to server' }); });
+server_1.app.listen(PORT, function () { return console.log('we connected'); });
 //# sourceMappingURL=app.js.map
