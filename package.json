@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha './dist/**/*.spec.js'",
+    "compile": "tsc --watch",
     "start": "node dist/app.js"
   },
   "repository": {
