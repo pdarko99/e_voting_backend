@@ -49,8 +49,7 @@ function sendEmails() {
                 switch (_a.label) {
                     case 0:
                         transporter = nodemailer_1.default.createTransport({
-                            host: 'smtp.gmail.com',
-                            port: 587,
+                            service: 'hotmail',
                             auth: {
                                 user: process.env.EMAIL,
                                 pass: process.env.PASSWORD

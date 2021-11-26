@@ -18,5 +18,7 @@ app.use(cors())
  app.use('/candidates', candidates)
  app.use('/voters', voters)
  
+// URL = mongodb+srv://Darko:gospel333@cluster0.xbklg.mongodb.net/zuri?retryWrites=true&w=majority
+
 
 export {app}
