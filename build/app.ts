@@ -3,7 +3,7 @@ import { isOperationalError, logError, returnError } from './error/baseError';
 import {app} from './server'
 
 
-const url = process.env.URL!
+const url = process.env.URL! ||  'mongodb://localhost/evotes'
 const PORT = process.env.PORT || 3000
 
     mongoose.connect(url).then((data) => {
