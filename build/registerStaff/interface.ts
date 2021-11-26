@@ -1,10 +1,11 @@
 export interface IRegister{
-    firstname: string,
+    fullname: string;
     email: string,
-    lastname: string,
-    password: string,
+    password?: string,
 }
 
 export interface Iformat extends IRegister {
-    confirmpassword: string
+
+        confirmPassword?: string,
+   
 }

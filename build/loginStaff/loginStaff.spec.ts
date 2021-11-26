@@ -5,19 +5,16 @@ import { LoginStaff } from "./loginStaffController";
 
 describe("login staff", function () {
   let req: any, res: any, next: any;
-  beforeEach(
-    () =>
-      function () {
+  beforeEach(() => 
         req = {
           body: {
-            username: "prince",
-            email: "heyaaaa",
+            email: "prince@gmail.com",
+            password: "heyaaaa",
           },
-        };
       }
   );
 
-  it.skip("should call the checkDb function with the right parameters when login User func is called", function () {
+  it("should call the checkDb function with the right parameters when login User func is called", function () {
     //this test doesnt run oo
     let loginStaff = new LoginStaff();
     let spy = sinon.spy(loginStaff, "checkDb");

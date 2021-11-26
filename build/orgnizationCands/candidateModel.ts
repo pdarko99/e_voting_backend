@@ -4,7 +4,7 @@ const {Schema} = mongoose
 const candidateModel = new Schema({
         firstname: {type: String, required: true},
         lastname: {type: String, required: true},
-        pic: {type: String, required: true},
+        pic: {type: String},
         position: {type: String, required: true},
         id: {type: String, required: true}
 

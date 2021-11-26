@@ -16,11 +16,13 @@ export class RegisterStaffController {
 
   async registerStaff(req: express.Request, res: express.Response, next: express.NextFunction) {
     let data = { ...req.body };
+
     let validData = this.validate(data);
     if (validData.error) {
       throw new ApiBadRequest(validData.error?.details[0].message);
     }
     try {
+
       let token = await this.createUser(data);
       if (token)
         return res
@@ -45,6 +47,7 @@ export class RegisterStaffController {
       let user = new registerStaffModel(data);
       let User = await user.save();
       let token = jwt.sign({ id: User._id }, this.secret);
+      
       return token;
     } catch (error) {
       throw error
@@ -53,11 +56,10 @@ export class RegisterStaffController {
 
   validate(data: Iformat): any {
     const schema = joi.object({
-      firstname: joi.string().required(),
-      lastname: joi.string().required(),
+      fullname: joi.string().required(),
       email: joi.string().required().email(),
       password: joi.string().min(6).required(),
-      confirmpassword: joi.ref("password"),
+   
     });
 
     let validData = schema.validate(data);
@@ -67,10 +69,40 @@ export class RegisterStaffController {
 
   formatData(data: Iformat): IRegister {
     return {
-      firstname: data.firstname,
-      lastname: data.lastname,
+      fullname: data.fullname,
       email: data.email,
-      password: bcrypt.hashSync(data.password, 8),
+      password: bcrypt.hashSync(data.password!, 8),
     };
+  }
+
+  async update(req: express.Request, res: express.Response, next: express.NextFunction){
+    let id = req.query.id
+    let data = req.body
+    if(data.password){
+      data.password = bcrypt.hashSync(data.password, 8)
+    }
+    const filter = {_id:id}
+
+    try {
+      let updated = await registerStaffModel.findOneAndUpdate(filter, data, {
+           new: true
+       })
+       return res.status(200).send({message: 'updated successfully'})
+
+   } catch (error) {
+           throw(error)
+   }
+  }
+
+  async getUser(req: express.Request, res: express.Response, next: express.NextFunction){
+    let id = req.query.id
+    try {
+      let org = await registerStaffModel.findOne({_id: id})
+      return res.status(200).send(org)
+
+} catch (error) {
+  next(error)
+  
+}
   }
 }

@@ -6,6 +6,7 @@ import {app} from './server'
 
 const url = 'mongodb://localhost/evotes';
 const logger = pino()
+const PORT = process.env.PORT || 3000
 
     mongoose.connect(url).then((data) => {
         logger.info({success: 'connected to database'})
@@ -17,7 +18,6 @@ app.use(returnError)
 
 process.on('unhandledRejection', err => {
     throw err
-    // console.log(err)
 })
 
 process.on('uncaughtException', err =>{
@@ -28,7 +28,7 @@ process.on('uncaughtException', err =>{
     }
 })
 
-app.listen(3000, () => logger.info({connected: 'we connected to server'}))
+app.listen(PORT, () => logger.info({connected: 'we connected to server'}))
 
 
 

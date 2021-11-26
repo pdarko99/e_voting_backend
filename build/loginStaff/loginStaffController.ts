@@ -20,7 +20,7 @@ export class LoginStaff {
     const data = { ...req.body };
     try {
       let token = await this.checkDb(data);
-      if (token) return res.status(200).send({ message: "successful", token });
+      if (token.token) return res.status(200).send({ message: "successful", token: token.token, fullname: token.fullname });
     } catch (error) {
       next(error);
     }
@@ -40,7 +40,11 @@ export class LoginStaff {
       if (!validPassword) throw new Api404Error("incorrect password");
 
       let token = jwt.sign({ id: loginUser._id }, this.secret);
-      return token;
+      let user = {
+        token,
+        fullname: loginUser.fullname
+      }
+      return user;
     } catch (error) {
       throw error;
     }

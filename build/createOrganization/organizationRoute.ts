@@ -7,14 +7,23 @@ let createorg = new CreateOrganization()
 let util = new Utility()
 
 
+
+const upload = util.mult()
 function OrgaRouter() {
     router.route('/')
-        .get(createorg.getAllOrg)
+        .get(
+            util.getID, 
+            createorg.getAllOrg)
         .post(
-            // util.getID, 
+            util.getID, upload.single('Image'),
             createorg.createOrg)
+        .delete(
+            createorg.deleteOrg
+        )
     router.route('/id')
         .get(createorg.getOneOrg)
+        .put(upload.single('Image'),createorg.setEmailLogic, createorg.updateOrg)
+       
 
     return router
 }

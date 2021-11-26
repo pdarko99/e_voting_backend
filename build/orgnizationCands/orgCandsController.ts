@@ -5,10 +5,16 @@ export class OrgDetails {
     constructor(){}
 
     async createCandidate(req: express.Request, res: express.Response, next: express.NextFunction){
+        const url = process.env.PORT || 'http://localhost:3000'
 
         // req.body.id = req.query.id
+        if(req.file){
+            req.body.pic = `${url}/${req.file?.path}`
+        }
+        let data = {...req.body}
+        
         try {
-            let cand = new candidateModel(req.body)
+            let cand = new candidateModel(data)
             let savedCand = await cand.save();
             return res.status(200).send({message:"candidate saved successfully"})
 
@@ -20,11 +26,12 @@ export class OrgDetails {
 
 
     async updateCandiate(req: express.Request, res: express.Response, next: express.NextFunction){
-        //here i need two ids one for the id to be deleted which is gonna be idDel
-        //the other is gonna be added to the body to be deleted which is gonna be req.query.orgId
-        // req.body.id = req.query.orgId
-        req.body.id = "feefd"
-        const filter = {_id: "615f2d7cf2743d086949bbc0"}
+        const url = process.env.PORT || 'http://localhost:3000'
+        
+        const filter = {_id: req.query.id}
+        if(req.file){
+            req.body.pic = `${url}/${req.file?.path}`
+        }
         // const filter = {_id: req.query.idDel}
         const update = req.body
         try {
@@ -49,7 +56,8 @@ export class OrgDetails {
 
     async getAllCandidates(req: express.Request, res: express.Response, next: express.NextFunction){
         try {
-            let allCands = await candidateModel.find()
+            let id = req.query.orgId
+            let allCands = await candidateModel.find({id: id})
             return res.status(200).json({"message":"success", allCands})
         } catch (error) {
             next(error)

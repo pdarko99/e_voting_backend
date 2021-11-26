@@ -3,4 +3,7 @@ export interface IOrganization{
     key: string,
     id: string,
     pic: string,
+    starttime?: string,
+    endtime?: string,
+    startdate?: string
 }
