@@ -289,8 +289,7 @@ var CreateOrganization = /** @class */ (function () {
                     case 5: return [3 /*break*/, 7];
                     case 6:
                         error_8 = _a.sent();
-                        next(error_8);
-                        return [3 /*break*/, 7];
+                        return [2 /*return*/, res.status(400).send({ message: error_8 })];
                     case 7: return [2 /*return*/];
                 }
             });

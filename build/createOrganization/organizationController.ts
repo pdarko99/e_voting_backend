@@ -136,7 +136,8 @@ export class CreateOrganization{
                         return
                     }
                 } catch (error) {
-                    next(error)
+                    
+                    return res.status(400).send({message: error})
                 }
              
             })
