@@ -22,5 +22,5 @@ process.on('uncaughtException', function (err) {
         process.exit(1);
     }
 });
-server_1.app.listen(PORT, function () { return console.log('we connected'); });
+server_1.app.listen(PORT, function () { return console.log('we connected', PORT); });
 //# sourceMappingURL=app.js.map

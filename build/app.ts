@@ -26,7 +26,7 @@ process.on('uncaughtException', err =>{
     }
 })
 
-app.listen(PORT, () => console.log('we connected'))
+app.listen(PORT, () => console.log('we connected', PORT))
 
 
 
