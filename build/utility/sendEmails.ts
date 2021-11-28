@@ -5,7 +5,8 @@ function  sendEmails() {
 
     async function send(data: any,voter: any, password: string) {
             let transporter = nodemailer.createTransport({
-            service: 'gmail',
+                host: "smtp.gmail.com",
+                port: 465,
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD
@@ -35,6 +36,7 @@ function  sendEmails() {
                  await transporter.sendMail(info)
                 
             } catch (error) {
+                console.log(error)
                 throw(error)
             }
     }

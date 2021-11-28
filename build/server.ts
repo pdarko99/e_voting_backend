@@ -19,6 +19,7 @@ app.use(cors())
  app.use('/voters', voters)
  
 // URL = mongodb+srv://Darko:gospel333@cluster0.xbklg.mongodb.net/zuri?retryWrites=true&w=majority
+// https://defiant-ivy-beat.glitch.me
 
 
 export {app}

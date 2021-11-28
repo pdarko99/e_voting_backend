@@ -49,7 +49,8 @@ function sendEmails() {
                 switch (_a.label) {
                     case 0:
                         transporter = nodemailer_1.default.createTransport({
-                            service: 'gmail',
+                            host: "smtp.gmail.com",
+                            port: 465,
                             auth: {
                                 user: process.env.EMAIL,
                                 pass: process.env.PASSWORD
@@ -71,6 +72,7 @@ function sendEmails() {
                         return [3 /*break*/, 4];
                     case 3:
                         error_1 = _a.sent();
+                        console.log(error_1);
                         throw (error_1);
                     case 4: return [2 /*return*/];
                 }
