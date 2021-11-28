@@ -281,7 +281,7 @@ var CreateOrganization = /** @class */ (function () {
                         return [4 /*yield*/, this.sendEmailAndHashpass(id, data)];
                     case 3:
                         _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'emails sent successfully' })
+                        return [2 /*return*/, res.status(200).send({ message: 'emails sent successfully :)' })
                             // if(!data.startdate ){
                             //     return
                             // }

@@ -129,7 +129,7 @@ export class CreateOrganization{
                     let data: any = await this.findOneOrgInDb(id)
                     
                     await this.sendEmailAndHashpass(id, data)
-                    return res.status(200).send({message: 'emails sent successfully'})
+                    return res.status(200).send({message: 'emails sent successfully :)'})
                     // if(!data.startdate ){
                     //     return
                     // }
