@@ -7,7 +7,7 @@ import { Ilogin } from "./loginStaffInterface";
 require("dotenv").config();
 
 export class LoginStaff {
-  secret = process.env.SECRET!;
+  secret = process.env.SECRET!
   constructor() {
     this.loginUser = this.loginUser.bind(this);
   }

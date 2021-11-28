@@ -238,19 +238,26 @@ var CreateOrganization = /** @class */ (function () {
                     case 1:
                         allVoters = _a.sent();
                         allVoters.forEach(function (voter) { return __awaiter(_this, void 0, void 0, function () {
-                            var password;
+                            var password, error_8;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
                                         password = generator.generatePassword();
                                         voter.password = bcryptjs_1.default.hashSync(password, 8);
-                                        return [4 /*yield*/, orgvoters.updateVoterFromDb(voter._id, voter)];
+                                        _a.label = 1;
                                     case 1:
-                                        _a.sent();
-                                        return [4 /*yield*/, sendEmails_1.default.send(data, voter, password)];
+                                        _a.trys.push([1, 4, , 5]);
+                                        return [4 /*yield*/, orgvoters.updateVoterFromDb(voter._id, voter)];
                                     case 2:
                                         _a.sent();
-                                        return [2 /*return*/];
+                                        return [4 /*yield*/, sendEmails_1.default.send(data, voter, password)];
+                                    case 3:
+                                        _a.sent();
+                                        return [3 /*break*/, 5];
+                                    case 4:
+                                        error_8 = _a.sent();
+                                        throw error_8;
+                                    case 5: return [2 /*return*/];
                                 }
                             });
                         }); });
@@ -265,7 +272,7 @@ var CreateOrganization = /** @class */ (function () {
         var startime = req.body.starttime.split(':');
         var id = req.query.key;
         node_cron_1.default.schedule(startime[1] + " " + startime[0] + " " + datetime[2] + " " + datetime[1] + " *", function () { return __awaiter(_this, void 0, void 0, function () {
-            var data, datee, timee, error_8;
+            var data, datee, timee, error_9;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -288,8 +295,8 @@ var CreateOrganization = /** @class */ (function () {
                         return [2 /*return*/];
                     case 5: return [3 /*break*/, 7];
                     case 6:
-                        error_8 = _a.sent();
-                        return [2 /*return*/, res.status(400).send({ message: error_8 })];
+                        error_9 = _a.sent();
+                        return [2 /*return*/, res.status(400).send({ message: error_9 })];
                     case 7: return [2 /*return*/];
                 }
             });

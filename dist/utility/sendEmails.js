@@ -49,7 +49,7 @@ function sendEmails() {
                 switch (_a.label) {
                     case 0:
                         transporter = nodemailer_1.default.createTransport({
-                            service: 'hotmail',
+                            service: 'gmail',
                             auth: {
                                 user: process.env.EMAIL,
                                 pass: process.env.PASSWORD

@@ -5,7 +5,7 @@ function  sendEmails() {
 
     async function send(data: any,voter: any, password: string) {
             let transporter = nodemailer.createTransport({
-            service: 'hotmail',
+            service: 'gmail',
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD

@@ -108,8 +108,13 @@ export class CreateOrganization{
             allVoters.forEach(async (voter: { password: string, _id: any })  => {
                 let password = generator.generatePassword()
                 voter.password = bcrypt.hashSync(password, 8)
-                await orgvoters.updateVoterFromDb(voter._id, voter)
-                await sendEmails.send(data, voter, password)
+                try {
+                    await orgvoters.updateVoterFromDb(voter._id, voter)
+                    await sendEmails.send(data, voter, password)
+                } catch (error) {
+                    throw error
+                }
+              
             })
         }
          setEmailLogic(req: express.Request, res: express.Response, next: express.NextFunction ){
