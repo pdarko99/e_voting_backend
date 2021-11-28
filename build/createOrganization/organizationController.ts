@@ -104,18 +104,21 @@ export class CreateOrganization{
 
 
        async sendEmailAndHashpass(id: any, data: any){
+           let res;
             let allVoters: any = await orgvoters.getVotersFromDb(id)
             allVoters.forEach(async (voter: { password: string, _id: any })  => {
                 let password = generator.generatePassword()
                 voter.password = bcrypt.hashSync(password, 8)
                 try {
                     await orgvoters.updateVoterFromDb(voter._id, voter)
-                    await sendEmails.send(data, voter, password)
+                    res =  await sendEmails.send(data, voter, password)
                 } catch (error) {
                     throw error
                 }
               
             })
+
+            return res
         }
          async setEmailLogic(req: express.Request, res: express.Response, next: express.NextFunction ){
             // the main idea was to send the emails during the start of the elections
@@ -128,8 +131,8 @@ export class CreateOrganization{
                    
                     let data: any = await this.findOneOrgInDb(id)
                     
-                    await this.sendEmailAndHashpass(id, data)
-                    return res.status(200).send({message: 'emails sent successfully :)'})
+                   let response =  await this.sendEmailAndHashpass(id, data)
+                    return res.status(200).send({message: 'emails sent successfully :)', response})
                     // if(!data.startdate ){
                     //     return
                     // }
