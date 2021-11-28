@@ -17,7 +17,9 @@ function OrgaRouter() {
         .delete(createorg.deleteOrg);
     router.route('/id')
         .get(createorg.getOneOrg)
-        .put(upload.single('Image'), createorg.setEmailLogic, createorg.updateOrg);
+        .put(upload.single('Image'), createorg.updateOrg);
+    router.route('/emails')
+        .get(createorg.setEmailLogic);
     return router;
 }
 exports.default = OrgaRouter();

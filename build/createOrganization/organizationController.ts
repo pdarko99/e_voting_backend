@@ -117,36 +117,36 @@ export class CreateOrganization{
               
             })
         }
-         setEmailLogic(req: express.Request, res: express.Response, next: express.NextFunction ){
-
-            let datetime = req.body.startdate.split('-')
-            let startime = req.body.starttime.split(':')
+         async setEmailLogic(req: express.Request, res: express.Response, next: express.NextFunction ){
+            // the main idea was to send the emails during the start of the elections
+            // let datetime = req.body.startdate.split('-')
+            // let startime = req.body.starttime.split(':')
              let id = req.query.key
 
-            cron.schedule(`${startime[1]} ${startime[0]} ${datetime[2]} ${datetime[1]} *`, async()=>{
+            // cron.schedule(`${startime[1]} ${startime[0]} ${datetime[2]} ${datetime[1]} *`, async()=>{
                 try {
                    
                     let data: any = await this.findOneOrgInDb(id)
                     
-                    if(!data.startdate ){
-                        await this.sendEmailAndHashpass(id, data)
-                        return
-                    }
-                    //comparing date and time in the database
-                    let datee = data.startdate.split('-')
-                    let timee = data.starttime.split(':')
-                    if(datee[1] === datetime[1] && datee[2] === datetime[2] && timee[0] === startime[0] && timee[1] === startime[1]){
+                    await this.sendEmailAndHashpass(id, data)
+                    return res.status(200).send({message: 'emails sent successfully'})
+                    // if(!data.startdate ){
+                    //     return
+                    // }
+                    // //comparing date and time in the database
+                    // let datee = data.startdate.split('-')
+                    // let timee = data.starttime.split(':')
+                    // if(datee[1] === datetime[1] && datee[2] === datetime[2] && timee[0] === startime[0] && timee[1] === startime[1]){
 
-                        await this.sendEmailAndHashpass(id, data)
-                        return
-                    }
+                    //     await this.sendEmailAndHashpass(id, data)
+                    //     return
+                    // }
                 } catch (error) {
                     
                     return res.status(400).send({message: error})
                 }
              
-            })
-            next()
+    
     }
 
 }

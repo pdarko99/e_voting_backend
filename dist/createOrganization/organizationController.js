@@ -52,7 +52,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateOrganization = void 0;
 var model_1 = __importDefault(require("./model"));
-var node_cron_1 = __importDefault(require("node-cron"));
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var orgVotersController_1 = require("../orgVoters/orgVotersController");
 var sendEmails_1 = __importDefault(require("../utility/sendEmails"));
@@ -267,41 +266,40 @@ var CreateOrganization = /** @class */ (function () {
         });
     };
     CreateOrganization.prototype.setEmailLogic = function (req, res, next) {
-        var _this = this;
-        var datetime = req.body.startdate.split('-');
-        var startime = req.body.starttime.split(':');
-        var id = req.query.key;
-        node_cron_1.default.schedule(startime[1] + " " + startime[0] + " " + datetime[2] + " " + datetime[1] + " *", function () { return __awaiter(_this, void 0, void 0, function () {
-            var data, datee, timee, error_9;
+        return __awaiter(this, void 0, void 0, function () {
+            var id, data, error_9;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 6, , 7]);
-                        return [4 /*yield*/, this.findOneOrgInDb(id)];
+                        id = req.query.key;
+                        _a.label = 1;
                     case 1:
-                        data = _a.sent();
-                        if (!!data.startdate) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.sendEmailAndHashpass(id, data)];
+                        _a.trys.push([1, 4, , 5]);
+                        return [4 /*yield*/, this.findOneOrgInDb(id)];
                     case 2:
-                        _a.sent();
-                        return [2 /*return*/];
-                    case 3:
-                        datee = data.startdate.split('-');
-                        timee = data.starttime.split(':');
-                        if (!(datee[1] === datetime[1] && datee[2] === datetime[2] && timee[0] === startime[0] && timee[1] === startime[1])) return [3 /*break*/, 5];
+                        data = _a.sent();
                         return [4 /*yield*/, this.sendEmailAndHashpass(id, data)];
-                    case 4:
+                    case 3:
                         _a.sent();
-                        return [2 /*return*/];
-                    case 5: return [3 /*break*/, 7];
-                    case 6:
+                        return [2 /*return*/, res.status(200).send({ message: 'emails sent successfully' })
+                            // if(!data.startdate ){
+                            //     return
+                            // }
+                            // //comparing date and time in the database
+                            // let datee = data.startdate.split('-')
+                            // let timee = data.starttime.split(':')
+                            // if(datee[1] === datetime[1] && datee[2] === datetime[2] && timee[0] === startime[0] && timee[1] === startime[1]){
+                            //     await this.sendEmailAndHashpass(id, data)
+                            //     return
+                            // }
+                        ];
+                    case 4:
                         error_9 = _a.sent();
                         return [2 /*return*/, res.status(400).send({ message: error_9 })];
-                    case 7: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
-        }); });
-        next();
+        });
     };
     return CreateOrganization;
 }());
