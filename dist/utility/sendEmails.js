@@ -41,6 +41,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var nodemailer_1 = __importDefault(require("nodemailer"));
 require("dotenv").config();
+var googleapis_1 = require("googleapis");
+var OAuth2 = googleapis_1.google.auth.OAuth2;
+var OAuth2_client = new OAuth2(process.env.CLIENTID, process.env.CLIENTSECRET, "https://developers.google.com/oauthplayground");
+OAuth2_client.setCredentials({ refresh_token: process.env.REFRESHTOKEN });
 function sendEmails() {
     function send(data, voter, password) {
         return __awaiter(this, void 0, void 0, function () {
@@ -49,11 +53,15 @@ function sendEmails() {
                 switch (_a.label) {
                     case 0:
                         transporter = nodemailer_1.default.createTransport({
-                            host: "smtp.gmail.com",
-                            port: 465,
+                            service: 'gmail',
                             auth: {
+                                type: 'OAuth2',
                                 user: process.env.EMAIL,
-                                pass: process.env.PASSWORD
+                                clientId: process.env.CLIENTID,
+                                clientSecret: process.env.CLIENTSECRET,
+                                refreshToken: process.env.REFRESHTOKEN,
+                                accessToken: process.env.ACCESSTOKEN,
+                                expires: 1484314697598
                             }
                         });
                         info = {
@@ -61,7 +69,7 @@ function sendEmails() {
                             to: [voter.email],
                             subject: "Evoting - " + data.name,
                             text: "reached out on voting credentials",
-                            html: "\n                <h2>hello " + voter.firstname.toUpperCase() + "</h2>\n                <p>you've been registered to take part in the " + data.name + " voting exercise which\n                 will take place on the " + data.startdate + " at " + data.starttime + " hours to " + data.endtime + " hours</p>\n                <p>Below are your voting credentials: </p>\n                <ul>\n                    <li>Email: " + voter.email + " </li>\n                    <li>Password: " + password + "</li>\n                </ul>\n                <p>Now visit the web or download our mobile app, enter your organization name which happens to\n                be <strong> " + data.name + "</strong> then enter your credentails to begin voting!</p>\n            "
+                            html: "\n                <h2>hello " + voter.firstname + "</h2>\n                <p>you've been registered to take part in the " + data.name + " voting exercise which\n                 will take place on the " + data.startdate + " at " + data.starttime + " hours to " + data.endtime + " hours</p>\n                <p>Below are your voting credentials: </p>\n                <ul>\n                    <li>Email: " + voter.email + " </li>\n                    <li>Password: " + password + "</li>\n                </ul>\n                <p>Now visit the web or download our mobile app, enter your organization name which happens to\n                be <strong> " + data.name + "</strong> then enter your credentails to begin voting!</p>\n                <p>Happy Voting!</p>\n            "
                         };
                         _a.label = 1;
                     case 1:

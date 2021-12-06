@@ -111,7 +111,7 @@ export class CreateOrganization{
                 voter.password = bcrypt.hashSync(password, 8)
                 try {
                     await orgvoters.updateVoterFromDb(voter._id, voter)
-                    res =  await sendEmails.send(data, voter, password)
+                    await sendEmails.send(data, voter, password)
                 } catch (error) {
                     throw error
                 }
@@ -131,8 +131,8 @@ export class CreateOrganization{
                    
                     let data: any = await this.findOneOrgInDb(id)
                     
-                   let response =  await this.sendEmailAndHashpass(id, data)
-                    return res.status(200).send({message: 'emails sent successfully uoo', response})
+                 await this.sendEmailAndHashpass(id, data)
+                    return res.status(200).send({message: 'emails sent successfully'})
                     // if(!data.startdate ){
                     //     return
                     // }

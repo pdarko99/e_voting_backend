@@ -251,7 +251,7 @@ var CreateOrganization = /** @class */ (function () {
                                         _a.sent();
                                         return [4 /*yield*/, sendEmails_1.default.send(data, voter, password)];
                                     case 3:
-                                        res = _a.sent();
+                                        _a.sent();
                                         return [3 /*break*/, 5];
                                     case 4:
                                         error_8 = _a.sent();
@@ -267,7 +267,7 @@ var CreateOrganization = /** @class */ (function () {
     };
     CreateOrganization.prototype.setEmailLogic = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, data, response, error_9;
+            var id, data, error_9;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -280,8 +280,8 @@ var CreateOrganization = /** @class */ (function () {
                         data = _a.sent();
                         return [4 /*yield*/, this.sendEmailAndHashpass(id, data)];
                     case 3:
-                        response = _a.sent();
-                        return [2 /*return*/, res.status(200).send({ message: 'emails sent successfully uoo', response: response })
+                        _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: 'emails sent successfully' })
                             // if(!data.startdate ){
                             //     return
                             // }
