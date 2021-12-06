@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha './dist/**/*.spec.js'",
     "compile": "tsc --watch",
-    "start": "nodemon dist/app.js"
+    "start": "node dist/app.js"
   },
   "repository": {
     "type": "git",
