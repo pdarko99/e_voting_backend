@@ -13,12 +13,12 @@ function  sendEmails() {
                 service: 'gmail',
                 auth:{
                     type: 'OAuth2',
-                     user: process.env.EMAIL,
-                    clientId: process.env.CLIENTID,
+                     user: 'padarko99@gmail.com',
+                    clientId:process.env.CLIENTID,
                     clientSecret: process.env.CLIENTSECRET,
                     refreshToken: process.env.REFRESHTOKEN,
                     accessToken: process.env.ACCESSTOKEN,
-                    expires: 1484314697598
+                    expires: 1484314697599
                 }
             });
 
@@ -46,7 +46,7 @@ function  sendEmails() {
                  await transporter.sendMail(info)
                 
             } catch (error) {
-                console.log(error)
+                console.log(error, 'from error')
                 throw(error)
             }
     }

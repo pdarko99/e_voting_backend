@@ -25,6 +25,8 @@ function OrgaRouter() {
         .put(upload.single('Image'), createorg.updateOrg)
     router.route('/emails')
             .get(createorg.setEmailLogic)
+    router.route('/getallOrgs')
+            .get(createorg.getAllOrgs)
        
 
     return router

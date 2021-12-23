@@ -1,13 +1,19 @@
 import express from 'express'
 import votersModel from './votersModel'
 import { readFileSync } from 'fs'
+import { Api404Error } from "../error/errors";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import fs from 'fs'
 import readline from 'readline'
 import { IVoters } from './interface'
+import { Ilogin } from '../loginStaff/loginStaffInterface';
 
 export class OrgVoters {
+    secret = process.env.SECRET! 
+
     arr: IVoters[] = []
-    constructor(){ this.createCandidate = this.createCandidate.bind(this); this.refactore = this.refactore.bind(this); this.updateCandiate = this.updateCandiate.bind(this); this.getAllCandidates = this.getAllCandidates.bind(this)}
+    constructor(){this.loginUser = this.loginUser.bind(this); this.createCandidate = this.createCandidate.bind(this); this.refactore = this.refactore.bind(this); this.updateCandiate = this.updateCandiate.bind(this); this.getAllCandidates = this.getAllCandidates.bind(this)}
     async createCandidate(req: express.Request, res: express.Response, next: express.NextFunction){
 
        
@@ -118,4 +124,42 @@ export class OrgVoters {
             next(error)
         }
     }
+
+    async loginUser(
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) {
+        const data = { ...req.body };
+        const id = <string> req.query.id
+        try {
+          let token = await this.checkDb(data, id);
+          if (token.token) return res.status(200).send({ message: "successful", token: token.token });
+        } catch (error) {
+          next(error);
+        }
+      }
+    
+      async checkDb(data:Ilogin, id: string) {
+        try {
+          let loginUser: any = await votersModel.findOne({
+            email: data.email, id: id
+          });
+          if (!loginUser) throw new Api404Error("no such user in our database");
+          let validPassword = await bcrypt.compare(
+            data.password,
+            loginUser.password
+          );
+    
+          if (!validPassword) throw new Api404Error("incorrect password");
+    
+          let token = jwt.sign({ id: loginUser._id }, this.secret);
+          let user = {
+            token
+          }
+          return user;
+        } catch (error) {
+          throw error;
+        }
+      }
 }

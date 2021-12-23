@@ -15,6 +15,8 @@ function voters(){
         .put(org.updateCandiate)
     router.route('/single')
         .post(org.addSingleVoter)
+     router.route('/auth')
+        .post(org.loginUser)
 
     return router
 }

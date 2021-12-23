@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 require("dotenv").config(); 
 
 export class RegisterStaffController {
-  secret = process.env.SECRET!;
+  secret = process.env.SECRET!
   constructor() {
     this.registerStaff = this.registerStaff.bind(this);
     this.createUser = this.createUser.bind(this);

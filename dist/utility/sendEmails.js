@@ -56,12 +56,12 @@ function sendEmails() {
                             service: 'gmail',
                             auth: {
                                 type: 'OAuth2',
-                                user: process.env.EMAIL,
+                                user: 'padarko99@gmail.com',
                                 clientId: process.env.CLIENTID,
                                 clientSecret: process.env.CLIENTSECRET,
                                 refreshToken: process.env.REFRESHTOKEN,
                                 accessToken: process.env.ACCESSTOKEN,
-                                expires: 1484314697598
+                                expires: 1484314697599
                             }
                         });
                         info = {
@@ -80,7 +80,7 @@ function sendEmails() {
                         return [3 /*break*/, 4];
                     case 3:
                         error_1 = _a.sent();
-                        console.log(error_1);
+                        console.log(error_1, 'from error');
                         throw (error_1);
                     case 4: return [2 /*return*/];
                 }

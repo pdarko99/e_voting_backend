@@ -50,6 +50,16 @@ export class CreateOrganization{
         }
     }
 
+    async getAllOrgs(req: express.Request, res: express.Response, next: express.NextFunction){
+        try {
+            let allorg = await Organization.find()
+
+            return res.status(200).send({message:"users found", allorg})
+        } catch (error) {
+                next(error)
+        }
+    }
+
     async getOneOrg(req: express.Request, res: express.Response, next: express.NextFunction){
         let id = req.query.key
         try {

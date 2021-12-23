@@ -131,9 +131,29 @@ var CreateOrganization = /** @class */ (function () {
             });
         });
     };
+    CreateOrganization.prototype.getAllOrgs = function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var allorg, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, model_1.default.find()];
+                    case 1:
+                        allorg = _a.sent();
+                        return [2 /*return*/, res.status(200).send({ message: "users found", allorg: allorg })];
+                    case 2:
+                        error_4 = _a.sent();
+                        next(error_4);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     CreateOrganization.prototype.getOneOrg = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, findoneOrg, error_4;
+            var id, findoneOrg, error_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -148,8 +168,8 @@ var CreateOrganization = /** @class */ (function () {
                             return [2 /*return*/, res.status(200).send({ message: "users found", findoneOrg: findoneOrg })];
                         return [3 /*break*/, 4];
                     case 3:
-                        error_4 = _a.sent();
-                        next(error_4);
+                        error_5 = _a.sent();
+                        next(error_5);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -158,7 +178,7 @@ var CreateOrganization = /** @class */ (function () {
     };
     CreateOrganization.prototype.findOneOrgInDb = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var org, error_5;
+            var org, error_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -168,8 +188,8 @@ var CreateOrganization = /** @class */ (function () {
                         org = _a.sent();
                         return [2 /*return*/, org];
                     case 2:
-                        error_5 = _a.sent();
-                        throw (error_5);
+                        error_6 = _a.sent();
+                        throw (error_6);
                     case 3: return [2 /*return*/];
                 }
             });
@@ -178,7 +198,7 @@ var CreateOrganization = /** @class */ (function () {
     CreateOrganization.prototype.updateOrg = function (req, res, next) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var url, filter, update, updated, error_6;
+            var url, filter, update, updated, error_7;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -199,8 +219,8 @@ var CreateOrganization = /** @class */ (function () {
                         res.status(200).send({ message: "updated successfully" });
                         return [3 /*break*/, 4];
                     case 3:
-                        error_6 = _b.sent();
-                        next(error_6);
+                        error_7 = _b.sent();
+                        next(error_7);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -209,7 +229,7 @@ var CreateOrganization = /** @class */ (function () {
     };
     CreateOrganization.prototype.deleteOrg = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var deleted, error_7;
+            var deleted, error_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -219,8 +239,8 @@ var CreateOrganization = /** @class */ (function () {
                         deleted = _a.sent();
                         return [2 /*return*/, res.status(200).json({ "message": "deleted org successfully" })];
                     case 2:
-                        error_7 = _a.sent();
-                        next(error_7);
+                        error_8 = _a.sent();
+                        next(error_8);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -237,7 +257,7 @@ var CreateOrganization = /** @class */ (function () {
                     case 1:
                         allVoters = _a.sent();
                         allVoters.forEach(function (voter) { return __awaiter(_this, void 0, void 0, function () {
-                            var password, error_8;
+                            var password, error_9;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
@@ -254,8 +274,8 @@ var CreateOrganization = /** @class */ (function () {
                                         _a.sent();
                                         return [3 /*break*/, 5];
                                     case 4:
-                                        error_8 = _a.sent();
-                                        throw error_8;
+                                        error_9 = _a.sent();
+                                        throw error_9;
                                     case 5: return [2 /*return*/];
                                 }
                             });
@@ -267,7 +287,7 @@ var CreateOrganization = /** @class */ (function () {
     };
     CreateOrganization.prototype.setEmailLogic = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var id, data, error_9;
+            var id, data, error_10;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -294,8 +314,8 @@ var CreateOrganization = /** @class */ (function () {
                             // }
                         ];
                     case 4:
-                        error_9 = _a.sent();
-                        return [2 /*return*/, res.status(400).send({ message: error_9 })];
+                        error_10 = _a.sent();
+                        return [2 /*return*/, res.status(400).send({ message: error_10 })];
                     case 5: return [2 /*return*/];
                 }
             });
