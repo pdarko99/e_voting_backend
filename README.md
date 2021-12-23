@@ -1,5 +1,6 @@
 # Online Voting App
 
+  find frontend written in angular here https://github.com/PrinceAcquahDarko/e-voting-frontend.git
 ## Description
 
   The Online Voting App helps organizations in various universities organize elections to select leaders.
