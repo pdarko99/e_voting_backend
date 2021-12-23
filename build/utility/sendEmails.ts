@@ -37,7 +37,7 @@ function  sendEmails() {
                     <li>Email: ${voter.email} </li>
                     <li>Password: ${password}</li>
                 </ul>
-                <p>Now visit the web or download our mobile app, enter your organization name which happens to
+                <p>Now visit the <a href="https://evg-mobile.vercel.app/welcome">web</a>  or download our mobile app, enter your organization name which happens to
                 be <strong> ${data.name}</strong> then enter your credentails to begin voting!</p>
                 <p>Happy Voting!</p>
             `
