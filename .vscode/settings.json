@@ -24,7 +24,11 @@
 
     "editor.fontFamily": "Roboto Mono",
     "editor.fontSize": 16,
-    "editor.quickSuggestions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    },
     "editor.parameterHints.enabled": false,
     "editor.wordBasedSuggestions": false,
     "editor.selectionHighlight": false,

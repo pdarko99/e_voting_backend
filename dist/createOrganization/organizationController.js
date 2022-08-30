@@ -202,7 +202,7 @@ var CreateOrganization = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        url = process.env.PORT || 'http://localhost:3000';
+                        url = 'https://shrouded-reef-90177.herokuapp.com';
                         if (req.file) {
                             req.body.pic = url + "/" + ((_a = req.file) === null || _a === void 0 ? void 0 : _a.path);
                         }

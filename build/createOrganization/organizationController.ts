@@ -84,7 +84,7 @@ export class CreateOrganization{
     }
 
     async updateOrg(req: express.Request, res: express.Response, next: express.NextFunction){
-        const url = process.env.PORT || 'http://localhost:3000'
+        const url = 'https://shrouded-reef-90177.herokuapp.com'
 
         if(req.file){
             req.body.pic = `${url}/${req.file?.path}`
